@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card shadow-sm mb-4">
+    <div class="card-header bg-white d-flex justify-content-between align-items-center">
+        <h2 class="mb-0">{{ ricetta.titolo }}</h2>
+        <span class="badge bg-secondary fs-6">{{ ricetta.categoria.nome }}</span>
+    </div>
+    <div class="card-body">
+        {% if ricetta.immagine_url %}
+            <div class="text-center mb-4">
+                <img src="{{ ricetta.immagine_url }}" class="img-fluid rounded shadow-sm" style="max-height: 400px; width: 100%; object-fit: cover;">
+            </div>
+        {% endif %}
+        
+        <p class="text-muted">
+            ⏱️ Tempo: <strong>{{ ricetta.tempo_preparazione }} min</strong> | 
+            📊 Difficoltà: <strong>{{ ricetta.difficolta }}</strong>
+        </p>
+        
+        <hr>
+        <h5>Ingredienti</h5>
+        <p style="white-space: pre-wrap;">{{ ricetta.ingredienti }}</p>
+        
+        <hr>
+        <h5>Procedimento</h5>
+        <p style="white-space: pre-wrap;">{{ ricetta.descrizione }}</p>
+    </div>
+    <div class="card-footer bg-light d-flex justify-content-between">
+        <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">Torna indietro</a>
+        
+        <div>
+            <a href="{{ url_for('modifica', id=ricetta.id) }}" class="btn btn-warning">Modifica</a>
+            
+            <form action="{{ url_for('elimina', id=ricetta.id) }}" method="POST" class="d-inline">
+                <button type="submit" class="btn btn-danger" onclick="return confirm('Sei sicuro di voler eliminare questa ricetta?');">Elimina</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

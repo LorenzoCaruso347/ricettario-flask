@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Aggiungi una Nuova Ricetta</h4>
+            </div>
+            <div class="card-body">
+                
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                  {% if messages %}
+                    {% for category, message in messages %}
+                      <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                  {% endif %}
+                {% endwith %}
+
+                <form method="POST" action="{{ url_for('aggiungi') }}">
+                    <div class="mb-3">
+                        <label class="form-label">Titolo Ricetta *</label>
+                        <input type="text" name="titolo" class="form-control" required>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Categoria *</label>
+                            <select name="categoria_id" class="form-select" required>
+                                {% for cat in categorie %}
+                                    <option value="{{ cat.id }}">{{ cat.nome }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Difficoltà *</label>
+                            <select name="difficolta" class="form-select" required>
+                                <option value="Facile">Facile</option>
+                                <option value="Media">Media</option>
+                                <option value="Difficile">Difficile</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Tempo di preparazione (minuti) *</label>
+                        <input type="number" name="tempo_preparazione" class="form-control" min="1" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">URL Immagine (Opzionale)</label>
+                        <input type="url" name="immagine_url" class="form-control" placeholder="https://esempio.com/foto-piatto.jpg">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Ingredienti *</label>
+                        <textarea name="ingredienti" class="form-control" rows="3" required></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Procedimento *</label>
+                        <textarea name="descrizione" class="form-control" rows="4" required></textarea>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-success">Salva Ricetta</button>
+                        <a href="{{ url_for('index') }}" class="btn btn-secondary">Annulla</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

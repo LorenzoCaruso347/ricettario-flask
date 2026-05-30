@@ -1,0 +1,29 @@
+/* 1. Sfondo generale leggermente più caldo per un effetto "ricettario" */
+body {
+    background-color: #fdfbf7;
+}
+
+/* 2. Effetto WOW sulle card delle ricette quando ci si passa sopra con il mouse */
+.recipe-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.recipe-card:hover {
+    transform: translateY(-5px); /* Solleva la card di 5 pixel */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15) !important; /* Rende l'ombra più profonda */
+}
+
+/* 3. Personalizzazione della barra di scorrimento (scrollbar) del browser */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #999;
+}
