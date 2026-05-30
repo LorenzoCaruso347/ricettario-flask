@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
+app.secret_key = 'chiave_segreta'
 
 # Configurazione del database e della chiave segreta per i messaggi flash
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
