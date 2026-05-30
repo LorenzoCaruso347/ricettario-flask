@@ -1,6 +1,6 @@
 /* 1. Sfondo generale leggermente più caldo per un effetto "ricettario" */
 body {
-    background-color: #fdfbf7;
+    background-color: #fbf0db !important;
 }
 
 /* 2. Effetto WOW sulle card delle ricette quando ci si passa sopra con il mouse */
